@@ -239,13 +239,36 @@ canvas {
   left: 0;
   pointer-events: none;
 }
+
+.audio-control {
+  margin-top: 15px;
+}
+
+.audio-control button {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: "Playfair Display", serif;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.audio-control button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
 </style>
 </head>
 
 <body>
 
 <!-- 🎵 MUSIC -->
-<audio id="bg-music" autoplay loop>
+<audio id="bg-music" loop preload="auto">
   <source src="Kigas-kurset.mpeg" type="audio/mpeg">
 </audio>
 
@@ -322,6 +345,11 @@ Your impact will endure.
 
 <a class="btn">🎉 Celebrate This Moment</a>
 
+</div>
+
+<!-- PLAY MUSIC BUTTON -->
+<div class="audio-control">
+  <button onclick="toggleAudio()" id="audioBtn">🔊 Play Music</button>
 </div>
 
 <!-- 🖼️ MASONRY GALLERY -->
@@ -412,28 +440,56 @@ document.addEventListener('click', () => {
 
 <script>
 const audio = document.getElementById("bg-music");
+const btn = document.getElementById("audioBtn");
 
-/* unlock + keep playing */
-function ensureAudio() {
-  if (audio.paused) {
-    audio.play().catch(() => {});
+let userHasInteracted = false;
+
+/* 🎵 Try autoplay (browser may block on mobile) */
+function tryAutoPlay() {
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        btn.innerText = "⏸️ Pause Music";
+      })
+      .catch(() => {
+        btn.innerText = "🔊 Play Music";
+      });
   }
 }
 
-/* trigger on ANY user interaction */
-document.addEventListener("click", ensureAudio);
-document.addEventListener("touchstart", ensureAudio);
+/* 🔘 Button control */
+function toggleAudio() {
+  userHasInteracted = true;
 
-/* 🔍 LIGHTBOX */
-function openLightbox(index) {
-  currentIndex = index;
-  document.getElementById("lightbox").style.display = "flex";
-  showImage();
-
-  ensureAudio(); // 🔥 resume music when opening gallery
+  if (audio.paused) {
+    audio.play();
+    btn.innerText = "⏸️ Pause Music";
+  } else {
+    audio.pause();
+    btn.innerText = "🔊 Play Music";
+  }
 }
-</script>
 
+/* 📱 Unlock audio on first interaction (mobile fix) */
+function unlockAudio() {
+  if (!userHasInteracted) {
+    audio.play().then(() => {
+      btn.innerText = "⏸️ Pause Music";
+    }).catch(() => {});
+  }
+  userHasInteracted = true;
+}
+
+/* 🎯 Auto attempt on load */
+window.addEventListener("load", tryAutoPlay);
+
+/* 📱 First tap anywhere enables audio */
+document.addEventListener("click", unlockAudio, { once: true });
+document.addEventListener("touchstart", unlockAudio, { once: true });
+</script>
+  
 <div class="footer">
   <p>Yours Truly, @KiprutoDavis</p>
 </div>
