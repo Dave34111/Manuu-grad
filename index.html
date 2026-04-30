@@ -442,52 +442,40 @@ document.addEventListener('click', () => {
 const audio = document.getElementById("bg-music");
 const btn = document.getElementById("audioBtn");
 
-let userHasInteracted = false;
+/* 🎯 Play state tracker */
+let isPlaying = false;
 
-/* 🎵 Try autoplay (browser may block on mobile) */
-function tryAutoPlay() {
-  const playPromise = audio.play();
-
-  if (playPromise !== undefined) {
-    playPromise
+/* ▶️ Main toggle function */
+function toggleAudio() {
+  if (audio.paused) {
+    audio.play()
       .then(() => {
+        isPlaying = true;
         btn.innerText = "⏸️ Pause Music";
       })
       .catch(() => {
-        btn.innerText = "🔊 Play Music";
+        isPlaying = false;
+        btn.innerText = "▶️ Play Music";
       });
-  }
-}
-
-/* 🔘 Button control */
-function toggleAudio() {
-  userHasInteracted = true;
-
-  if (audio.paused) {
-    audio.play();
-    btn.innerText = "⏸️ Pause Music";
   } else {
     audio.pause();
-    btn.innerText = "🔊 Play Music";
+    isPlaying = false;
+    btn.innerText = "▶️ Play Music";
   }
 }
 
-/* 📱 Unlock audio on first interaction (mobile fix) */
-function unlockAudio() {
-  if (!userHasInteracted) {
-    audio.play().then(() => {
+/* 🎵 Optional autoplay attempt (safe) */
+window.addEventListener("load", () => {
+  audio.play()
+    .then(() => {
+      isPlaying = true;
       btn.innerText = "⏸️ Pause Music";
-    }).catch(() => {});
-  }
-  userHasInteracted = true;
-}
-
-/* 🎯 Auto attempt on load */
-window.addEventListener("load", tryAutoPlay);
-
-/* 📱 First tap anywhere enables audio */
-document.addEventListener("click", unlockAudio, { once: true });
-document.addEventListener("touchstart", unlockAudio, { once: true });
+    })
+    .catch(() => {
+      isPlaying = false;
+      btn.innerText = "▶️ Play Music";
+    });
+});
 </script>
   
 <div class="footer">
