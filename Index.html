@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congratulations Emmanuel Tonui</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&Family=Dancing+Script&family=Playfair+Display:ital,wght@0,400;0,600:1,400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+
+  background: linear-gradient(
+    135deg,
+    #2e004f,
+    #5a189a,
+    #ffffff,
+    #fff7e6
+  );
+
+  color: #2c2c2c;
+}
+
+/* 🏛️ container */
+.container {
+  max-width: 950px;
+  margin: auto;
+  padding: 30px;
+  background: rgba(255,255,255,0.78);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  box-shadow: 0 0 30px rgba(212,175,55,0.25);
+  position: relative;
+
+  .laurel-wrap{
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}
+
+/* 👑 HEADER */
+h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.2rem;
+  margin: 10px 0;
+  color: #2c3e50;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+/* 🌟 SVG LAUREL WRAPPER */
+.laurel-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  gap: 20px;
+}
+
+/* SVG sizing */
+.laurel svg {
+  width: 120px;
+  height: auto;
+  fill: #d4af37;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+}
+
+/* center seal */
+.seal {
+  font-family: "Playfair Display", serif;
+  font-size: 4rem;
+  color: #b8860b;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+/* 📜 CARD */
+.card {
+  background: rgba(255,255,255,0.92);
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 25px;
+  border: 1px solid rgba(212,175,55,0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.corner {
+  position: absolute;
+  font-size: 1.3rem;
+  color: #d4af37;
+  opacity: 0.7;
+}
+
+.top-left { top: 10px; left: 15px; }
+.top-right { top: 10px; right: 15px; }
+.bottom-left { bottom: 10px; left: 15px; }
+.bottom-right { bottom: 10px; right: 15px; }
+
+p {
+  font-family: "Dancing Script", cursive;
+  line-height: 1;
+  font-size: 1.5rem;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.highlight {
+  color: #b8860b;
+  font-weight: bold;
+}
+
+/* 🖼️ MASONRY */
+.masonry {
+  column-count: 3;
+  column-gap: 15px;
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .masonry { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  .masonry { column-count: 1; }
+}
+
+.masonry img {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 16px;
+  cursor: pointer;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.masonry img:hover {
+  transform: scale(1.02);
+}
+
+/* 🔍 LIGHTBOX */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+
+  animation: fadeIn 0.3s ease;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+  animation: zoomIn 0.3s ease;
+}
+
+#caption {
+  color: #ddd;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-family: "Playfair Display", serif;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* arrows */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.nav:hover, .close:hover {
+  color: #d4af37;
+}
+
+/* animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 🎉 BUTTON */
+.btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  background: #1a73e8;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* 🎊 CANVAS */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio id="bg-music" autoplay loop>
+  <source src="Kigas-kurset.mpeg" type="audio/mpeg">
+</audio>
+
+<canvas id="confetti"></canvas>
+
+<div class="container">
+
+<!-- 👑 SVG LAUREL HEADER -->
+<div class="laurel-wrap">
+
+  <!-- LEFT LAUREL -->
+  <div class="laurel">
+    <svg viewBox="0 0 64 64">
+      <path d="M20 2 C10 15, 8 30, 12 44 C16 58, 28 62, 30 62 C18 50, 16 30, 20 2 Z"/>
+      <path d="M10 10 C5 20, 5 30, 10 40"/>
+      <path d="M14 14 C9 24, 9 34, 14 44"/>
+    </svg>
+  </div>
+
+  <div class="seal">🎓 GRADUATION</div>
+
+  <!-- RIGHT LAUREL (mirrored feel) -->
+  <div class="laurel">
+    <svg viewBox="0 0 64 64">
+      <path d="M44 2 C54 15, 56 30, 52 44 C48 58, 36 62, 34 62 C46 50, 48 30, 44 2 Z"/>
+      <path d="M54 10 C59 20, 59 30, 54 40"/>
+      <path d="M50 14 C55 24, 55 34, 50 44"/>
+    </svg>
+  </div>
+
+</div>
+
+<h1>Congratulations</h1>
+<h1>Cuz Manuu</h1>
+<P>On Your</P>
+<h2>Philosophy Graduation</h2>
+
+<div class="card">
+
+<div class="corner top-left">❦</div>
+<div class="corner top-right">❦</div>
+<div class="corner bottom-left">❦</div>
+<div class="corner bottom-right">❦</div>
+
+<p>
+Today stands as a remarkable milestone, 
+markinng the culmination of a philosophical 
+journey at St. Augustine Senior Seminary, Mabanga.
+</p>
+
+<p>
+Your journey reflects endurance, 
+discipline, and unwavering commitment.
+Every challenge has shaped your 
+strength and purpose.
+</p>
+
+<p>
+As you step into theological formation,
+may wisdom guide you, faith sustain you,
+and purpose illuminate your path.
+</p>
+
+<p class="highlight">
+Your future is bright.
+Your calling is noble.
+Your impact will endure.
+</p>
+
+<p>
+  We Celebrate you today and always. 
+  Congratulations!
+</p>
+
+<a class="btn">🎉 Celebrate This Moment</a>
+
+</div>
+
+<!-- 🖼️ MASONRY GALLERY -->
+<div class="masonry">
+
+  <img src="08.jpeg" alt="Graduation Day" data-caption="Graduation Day 🎓" onclick="openLightbox(0)">
+  <img src="02.jpeg" alt="A proud milestone" data-caption="A proud milestone" onclick="openLightbox(1)">
+  <img src="03.jpeg" alt="Looking Sharp" data-caption="Looking Sharp" onclick="openLightbox(2)">
+  <img src="04.jpeg" alt="Centre stage" data-caption="Centre stage" onclick="openLightbox(3)">
+  <img src="05.jpeg" alt="Moments to remember" data-caption="Moments to remember" onclick="openLightbox(4)">
+  <img src="06.jpeg" alt="Brother To Brother" data-caption="Brother To Brother" onclick="openLightbox(5)">
+  <img src="07.jpeg" alt="Emmanuel's proud moment" data-caption="Emmanuel's proud moment" onclick="openLightbox(6)">
+  <img src="01.jpeg" alt="A day of celebration" data-caption="A day of celebration" onclick="openLightbox(7)">
+
+</div>
+
+</div>
+
+<!-- 🔍 LIGHTBOX -->
+<div id="lightbox">
+  
+  <span class="close" onclick="closeLightbox()">✕</span>
+
+  <img id="lightbox-img" alt="Lightbox image">
+
+  <div id="caption"></div>
+
+  <div class="nav prev" onclick="changeSlide(-1)">❮</div>
+  <div class="nav next" onclick="changeSlide(1)">❯</div>
+
+</div>
+
+<script>
+let currentIndex = 0;
+const images = document.querySelectorAll(".masonry img");
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById("lightbox").style.display = "flex";
+  showImage();
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+function showImage() {
+  const img = images[currentIndex];
+  document.getElementById("lightbox-img").src = img.src;
+  document.getElementById("caption").innerText = img.dataset.caption || "";
+}
+
+function changeSlide(direction) {
+  currentIndex += direction;
+
+  if (currentIndex < 0) currentIndex = images.length - 1;
+  if (currentIndex >= images.length) currentIndex = images.length - 0 - 1;
+
+  showImage();
+}
+
+/* keyboard support */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight") changeSlide(1);
+  if (e.key === "ArrowLeft") changeSlide(-1);
+});
+
+/* swipe support */
+let startX = 0;
+
+document.getElementById("lightbox").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.getElementById("lightbox").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) changeSlide(1);
+  if (endX - startX > 50) changeSlide(-1);
+});
+
+/* autoplay unlock */
+document.addEventListener('click', () => {
+  document.querySelector("audio").play();
+});
+</script>
+
+<script>
+const audio = document.getElementById("bg-music");
+
+/* unlock + keep playing */
+function ensureAudio() {
+  if (audio.paused) {
+    audio.play().catch(() => {});
+  }
+}
+
+/* trigger on ANY user interaction */
+document.addEventListener("click", ensureAudio);
+document.addEventListener("touchstart", ensureAudio);
+
+/* 🔍 LIGHTBOX */
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById("lightbox").style.display = "flex";
+  showImage();
+
+  ensureAudio(); // 🔥 resume music when opening gallery
+}
+</script>
+
+<div class="footer">
+  <p>Yours Truly, @KiprutoDavis</p>
+</div>
+</body>
+</html>
