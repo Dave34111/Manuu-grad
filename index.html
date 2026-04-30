@@ -348,9 +348,7 @@ Your impact will endure.
 </div>
 
 <!-- PLAY MUSIC BUTTON -->
-<div class="audio-control">
-  <button onclick="toggleAudio()" id="audioBtn">🔊 Play Music</button>
-</div>
+<button id="audioBtn">🔊 Play Music</button>
 
 <!-- 🖼️ MASONRY GALLERY -->
 <div class="masonry">
@@ -439,45 +437,49 @@ document.addEventListener('click', () => {
 </script>
 
 <script>
-const audio = document.getElementById("bg-music");
-const btn = document.getElementById("audioBtn");
+document.addEventListener("DOMContentLoaded", function () {
 
-/* 🎯 Play state tracker */
-let isPlaying = false;
+  const audio = document.getElementById("bg-music");
+  const btn = document.getElementById("audioBtn");
 
-/* ▶️ Main toggle function */
-function toggleAudio() {
-  if (audio.paused) {
-    audio.play()
-      .then(() => {
-        isPlaying = true;
-        btn.innerText = "⏸️ Pause Music";
-      })
-      .catch(() => {
-        isPlaying = false;
-        btn.innerText = "▶️ Play Music";
-      });
-  } else {
-    audio.pause();
-    isPlaying = false;
-    btn.innerText = "▶️ Play Music";
+  let isPlaying = false;
+
+  function updateButton() {
+    btn.innerText = isPlaying ? "⏸️ Pause Music" : "▶️ Play Music";
   }
-}
 
-/* 🎵 Optional autoplay attempt (safe) */
-window.addEventListener("load", () => {
+  async function toggleAudio() {
+    try {
+      if (audio.paused) {
+        await audio.play();
+        isPlaying = true;
+      } else {
+        audio.pause();
+        isPlaying = false;
+      }
+    } catch (err) {
+      console.log("Audio error:", err);
+      isPlaying = false;
+    }
+    updateButton();
+  }
+
+  // Button click
+  btn.addEventListener("click", toggleAudio);
+
+  // Optional autoplay attempt (safe, won't break)
   audio.play()
     .then(() => {
       isPlaying = true;
-      btn.innerText = "⏸️ Pause Music";
+      updateButton();
     })
     .catch(() => {
       isPlaying = false;
-      btn.innerText = "▶️ Play Music";
+      updateButton();
     });
+
 });
-</script>
-  
+</script>  
 <div class="footer">
   <p>Yours Truly, @KiprutoDavis</p>
 </div>
